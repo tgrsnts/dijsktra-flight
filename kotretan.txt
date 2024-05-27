@@ -1,0 +1,43 @@
+shortest:
+  - jarak pendek (km)
+  - waktu singkat (s)
+  - cost (Rp)
+
+Dijkstra Algorithm
+
+S = himp verteks yang belum pernah menjadi titik eksplorasi jalur pada graph
+S'= komplemen S
+u = verteks yg saat itu menjadi titik eksplorasi jalur
+du= shortest distance dari verteks u
+dvi = shortest distance SEMENTARA dari setiap verteks i
+ 
+kasus vertex awal= v0 dan verteks tujuan=v5 
+----------------------------------------------------------------------------------
+                                                 dist. SEMENTARA thdp vertex awal
+ i         S             S'         u   du   |  dv0  dv1  dv2   dv3    dv4   dv5   
+----------------------------------------------------------------------------------
+ 0    {v0,v1,v2,        {}          -   -    |   0   inf  inf   inf    inf   inf   
+      v3, v4, v5}                            |
+----------------------------------------------------------------------------------
+ 1   {v1,v2,           {v0}        v0   0    |   0*  10    5    inf    inf   inf
+      v3, v4, v5}
+----------------------------------------------------------------------------------
+ 2   {v1,v3,          {v0, v2}     v2   5    |   0*   7    5*    20     17   inf 
+       v4, v5}
+----------------------------------------------------------------------------------
+ 3  { v3,           {v0,v1,v2}     v1   7    |   0*   7*   5*    12     17    27 
+       v4, v5}
+----------------------------------------------------------------------------------
+ 4  { v4, v5}       {v0,v1,v2,     v3   12   |   0*   7*   5*    12*    17    15 
+                        v3} 
+----------------------------------------------------------------------------------
+ 5  { v4 }          {v0,v1,v2,     v5   15   |           SELESAI              15* 
+                      v3, v5} 
+
+    v3 adalah predesessor dari v5
+v5<---v3<---v2<---v0
+
+dv1 lama  bandingkan dengan du + edge(v2,v1)
+ 10                          5 + 2 
+      karena du + edge(v2,v1) lebih kecil
+update dv1 = du + edge(v2,v1) = 7
